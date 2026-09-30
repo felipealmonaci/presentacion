@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0c1210" />
+  <meta name="color-scheme" content="dark" />
+  <title>CR7 · Cristiano Ronaldo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --gold: #c4b089;
+      --gold-2: #d4c4a4;
+      --gold-dark: #8f7d5a;
+      --bg: #0c1210;
+      --bg-2: #121a17;
+      --bg-3: #1a2420;
+      --card: #16201c;
+      --text: #ece7de;
+      --muted: #9aa399;
+      --red: #8f2d36;
+      --red-soft: #a8454c;
+      --green: #2f5a43;
+      --green-deep: #1e3b2d;
+      --white: #f3efe6;
+      --pad: clamp(16px, 3vw, 40px);
+      --section: clamp(48px, 8vw, 110px);
+      --nav-h: 68px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Outfit", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      min-width: 280px;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .wrap {
+      width: min(1120px, calc(100% - 2 * var(--pad)));
+      margin-inline: auto;
+      padding-left: env(safe-area-inset-left);
+      padding-right: env(safe-area-inset-right);
+    }
+
+    /* NAV */
+    header {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: blur(16px);
+      background: rgba(12,18,16,.82);
+      border-bottom: 1px solid rgba(143,45,54,.35);
+      padding-top: env(safe-area-inset-top);
+    }
+    .flag-bar {
+      height: 4px;
+      background: linear-gradient(90deg, #2f5a43 0 38%, #8f2d36 38% 100%);
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      min-height: var(--nav-h);
+      gap: 12px;
+    }
+    .logo {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: clamp(26px, 4vw, 36px); letter-spacing: 2px;
+      color: var(--red-soft);
+    }
+    .logo span { color: var(--white); }
+    .nav-links { display: flex; gap: 22px; font-size: 14px; font-weight: 500; color: var(--muted); }
+    .nav-links a:hover { color: var(--gold-2); }
+    .siu-btn {
+      border: 1px solid #6e2430;
+      background: linear-gradient(180deg, #9b3a42, #6e2430);
+      color: #f6eee8;
+      font-weight: 800;
+      letter-spacing: 1px;
+      padding: 10px 16px;
+      min-height: 44px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .siu-btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
+    .menu-toggle {
+      display: none; background: none; border: 0; color: var(--gold-2);
+      font-size: 28px; cursor: pointer; min-width: 44px; min-height: 44px;
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      min-height: calc(100svh - var(--nav-h));
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(900px 500px at 82% 12%, rgba(47,90,67,.28), transparent 58%),
+        radial-gradient(700px 420px at 8% 78%, rgba(143,45,54,.22), transparent 52%),
+        linear-gradient(180deg, #0c1210 0%, #101816 55%, #0c1210 100%);
+    }
+    .hero-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
+      gap: clamp(20px, 4vw, 48px);
+      align-items: center;
+      padding: clamp(28px, 5vw, 72px) 0;
+    }
+    .eyebrow {
+      color: var(--gold-2);
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    h1 {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: clamp(48px, 9vw, 118px);
+      line-height: .86;
+      letter-spacing: 1px;
+      margin: 10px 0 18px;
+    }
+    h1 em { font-style: normal; color: var(--red-soft); }
+    .hero p.lead {
+      color: var(--muted);
+      max-width: 520px;
+      font-size: clamp(15px, 2vw, 18px);
+    }
+    .hero-actions { display: flex; gap: 12px; margin-top: 28px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 12px 18px; border-radius: 999px;
+      font-weight: 700; cursor: pointer; border: 0; font-family: inherit;
+      min-height: 44px;
+    }
+    .btn-gold { background: #7a2f36; color: #f6eee8; }
+    .btn-ghost { background: transparent; color: var(--text); border: 1px solid rgba(255,255,255,.18); }
+    .hero-card {
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      border: 1px solid rgba(143,45,54,.28);
+      border-radius: 24px;
+      padding: 18px 18px 22px;
+      box-shadow: 0 30px 80px rgba(0,0,0,.45);
+    }
+    .hero-photo {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #101816;
+      margin-bottom: 14px;
+    }
+    .hero-photo img {
+      width: 100%;
+      height: min(58vh, 520px);
+      object-fit: contain;
+      object-position: center top;
+      display: block;
+    }
+    .big-7 {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: clamp(96px, 18vw, 180px); line-height: .8; color: var(--red-soft);
+      text-shadow: none;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+      gap: 16px;
+    }
+    .shot {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: 18px;
+      overflow: hidden;
+    }
+    .shot img {
+      width: 100%;
+      height: clamp(240px, 36vw, 380px);
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+    .shot figcaption {
+      padding: 12px 14px 16px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .shot figcaption strong { color: var(--text); display: block; }
+    .meta { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 8px; }
+    .meta div {
+      background: var(--bg-3);
+      border-radius: 14px;
+      padding: 12px 14px;
+    }
+    .meta small { color: var(--muted); display: block; font-size: 12px; }
+    .meta strong { font-size: 18px; }
+
+    /* SECTIONS */
+    section { padding: var(--section) 0; }
+    .sec-title {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: clamp(36px, 6vw, 64px);
+      letter-spacing: 1px;
+    }
+    .sec-sub { color: var(--muted); margin: 6px 0 32px; }
+
+    /* STATS */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+      gap: 16px;
+    }
+    .stat {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: 18px;
+      padding: 22px 18px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .stat::after {
+      content: "";
+      position: absolute; inset: auto 0 0 0; height: 3px;
+      background: linear-gradient(90deg, var(--green), var(--gold-dark), var(--red));
+    }
+    .stat .n {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: clamp(40px, 6vw, 56px); color: var(--gold-2); line-height: 1;
+    }
+    .stat span { color: var(--muted); font-size: 14px; }
+
+    /* CLUBS */
+    .clubs { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 160px), 1fr)); gap: 14px; }
+    .club {
+      background: var(--card);
+      border-radius: 18px;
+      padding: 18px 14px;
+      border: 1px solid rgba(255,255,255,.06);
+      cursor: pointer;
+      transition: .25s transform, .25s border-color, .25s background;
+    }
+    .club:hover, .club.active {
+      transform: translateY(-4px);
+      border-color: rgba(47,90,67,.7);
+      background: #1b2a23;
+    }
+    .club h3 { font-size: 15px; }
+    .club p { color: var(--muted); font-size: 13px; }
+    .club .g { color: var(--gold-2); font-weight: 800; margin-top: 8px; }
+    .club-detail {
+      margin-top: 18px;
+      background: var(--bg-3);
+      border-radius: 18px;
+      padding: 22px;
+      min-height: 110px;
+      border: 1px solid rgba(47,90,67,.35);
+    }
+
+    /* TIMELINE */
+    .timeline { position: relative; padding-left: 22px; }
+    .timeline::before {
+      content: "";
+      position: absolute; left: 6px; top: 0; bottom: 0;
+      width: 2px; background: linear-gradient(var(--green), var(--red), transparent);
+    }
+    .t-item { position: relative; margin-bottom: 22px; padding-left: 18px; }
+    .t-item::before {
+      content: "";
+      position: absolute; left: -20px; top: 8px;
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--red-soft);
+      box-shadow: 0 0 0 4px rgba(143,45,54,.22);
+    }
+    .t-item strong { color: var(--gold-2); }
+
+    /* QUIZ */
+    .quiz-box {
+      background: var(--card);
+      border-radius: 22px;
+      padding: 28px;
+      border: 1px solid rgba(255,255,255,.06);
+    }
+    .q { font-size: clamp(18px, 3vw, 24px); font-weight: 700; margin-bottom: 18px; }
+    .opts { display: grid; gap: 10px; }
+    .opt {
+      text-align: left;
+      background: var(--bg-3);
+      border: 1px solid rgba(255,255,255,.08);
+      color: var(--text);
+      padding: 14px 16px;
+      min-height: 48px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 15px;
+    }
+    .opt:hover { border-color: var(--green); }
+    .opt.correct { background: rgba(47,90,67,.38); border-color: #4a7a5e; }
+    .opt.wrong { background: rgba(143,45,54,.28); border-color: var(--red); }
+    .quiz-nav { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 18px; flex-wrap: wrap; }
+    .progress-bar { height: 6px; background: #24302a; border-radius: 99px; overflow: hidden; margin-bottom: 18px; }
+    .progress-bar > i { display: block; height: 100%; width: 20%; background: var(--red-soft); transition: width .3s; }
+
+    /* RECORDS */
+    .records { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 14px; }
+    .rec {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 18px 20px;
+      border-left: 3px solid var(--green);
+    }
+
+    footer {
+      border-top: 1px solid rgba(255,255,255,.06);
+      padding: 28px 0 calc(40px + env(safe-area-inset-bottom));
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    /* SIUU overlay */
+    #siuu {
+      position: fixed; inset: 0; display: none; place-items: center;
+      background: rgba(0,0,0,.55);
+      z-index: 80;
+      pointer-events: none;
+    }
+    #siuu.show { display: grid; }
+    #siuu h2 {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: clamp(80px, 18vw, 220px);
+      color: var(--gold-2);
+      animation: pop .7s ease;
+      text-shadow: 0 8px 30px rgba(0,0,0,.45);
+    }
+    @keyframes pop {
+      0% { transform: scale(.2) rotate(-12deg); opacity: 0; }
+      60% { transform: scale(1.12) rotate(4deg); opacity: 1; }
+      100% { transform: scale(1) rotate(0); }
+    }
+
+    /* Tablet */
+    @media (max-width: 1024px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-card { max-width: 560px; }
+      .nav-links { gap: 14px; font-size: 13px; }
+    }
+
+    /* Móvil y tablet pequeña */
+    @media (max-width: 800px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: calc(var(--nav-h) + env(safe-area-inset-top));
+        left: 0; right: 0;
+        background: #121a17;
+        padding: 10px 20px 18px;
+        border-bottom: 1px solid rgba(143,45,54,.25);
+        flex-direction: column;
+        gap: 4px;
+      }
+      .nav-links a { padding: 12px 4px; min-height: 44px; display: flex; align-items: center; }
+      .nav-links.open { display: flex; }
+      .menu-toggle { display: block; }
+      .meta { grid-template-columns: 1fr 1fr; }
+      .quiz-box { padding: 20px 16px; }
+    }
+
+    /* Teléfono */
+    @media (max-width: 560px) {
+      .hero { min-height: auto; }
+      .hero-actions .btn { width: 100%; }
+      .meta, .stats, .clubs, .records { grid-template-columns: 1fr; }
+      .eyebrow { letter-spacing: 2px; }
+      .club { min-height: 44px; }
+    }
+
+    /* Teléfono muy estrecho */
+    @media (max-width: 380px) {
+      h1 { font-size: clamp(40px, 16vw, 56px); }
+      .siu-btn { padding: 8px 12px; font-size: 13px; }
+    }
+
+    /* Horizontal en móvil */
+    @media (max-height: 500px) and (orientation: landscape) {
+      .hero { min-height: auto; }
+      .hero-grid { padding: 20px 0 28px; }
+      .big-7 { font-size: 88px; }
+    }
+
+    /* PC grande */
+    @media (min-width: 1280px) {
+      .wrap { width: min(1200px, calc(100% - 2 * var(--pad))); }
+    }
+
+    /* Televisión / pantallas 4K */
+    @media (min-width: 1800px) {
+      :root { --nav-h: 88px; }
+      .wrap { width: min(1600px, calc(100% - 80px)); }
+      body { font-size: 20px; }
+      .nav-links { gap: 32px; font-size: 20px; }
+      .siu-btn, .btn, .opt { min-height: 56px; font-size: 18px; }
+      .stat .n { font-size: 72px; }
+      .q { font-size: 32px; }
+      .hero-card { padding: 40px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="flag-bar"></div>
+    <div class="wrap nav">
+      <a class="logo" href="#inicio">CR<span>7</span></a>
+      <nav class="nav-links" id="links">
+        <a href="#stats">Números</a>
+        <a href="#fotos">Fotos</a>
+        <a href="#clubes">Clubes</a>
+        <a href="#carrera">Carrera</a>
+        <a href="#quiz">Quiz</a>
+        <a href="#records">Récords</a>
+      </nav>
+      <div style="display:flex;gap:10px;align-items:center">
+        <button class="siu-btn" onclick="siuu()">SIUUU</button>
+        <button class="menu-toggle" onclick="toggleMenu()" aria-label="Menú">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero" id="inicio">
+    <div class="hero-bg"></div>
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">Leyenda del fútbol · #7</p>
+        <h1>CRISTIANO<br><em>RONALDO</em></h1>
+        <p class="lead">
+          Nacido en Funchal, Madeira (Portugal) el 5 de febrero de 1985.
+          Cinco veces Balón de Oro, máximo goleador de la historia del fútbol
+          masculino y capitán de Portugal y Al-Nassr.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-gold" href="#stats">Ver números</a>
+          <a class="btn btn-ghost" href="#quiz">Jugar el quiz</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-photo">
+          <img src="images/Cristiano1.jpg" alt="Cristiano Ronaldo con la camiseta de Portugal, brazos cruzados" />
+        </div>
+        <p style="color:var(--muted);margin-bottom:16px">Capitán de Portugal · dorsal 7</p>
+        <div class="meta">
+          <div><small>Nombre completo</small><strong>Cristiano Ronaldo dos Santos Aveiro</strong></div>
+          <div><small>Posición</small><strong>Delantero</strong></div>
+          <div><small>Altura</small><strong>1,87 m</strong></div>
+          <div><small>Club actual</small><strong>Al-Nassr · Arabia Saudí</strong></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="stats">
+    <div class="wrap">
+      <h2 class="sec-title">Los números</h2>
+      <p class="sec-sub">Datos aproximados a finales de septiembre de 2026. Siguen subiendo.</p>
+      <div class="stats">
+        <article class="stat"><div class="n" data-count="979">0</div><span>Goles oficiales (club + selección)</span></article>
+        <article class="stat"><div class="n" data-count="146">0</div><span>Goles con Portugal (récord mundial)</span></article>
+        <article class="stat"><div class="n" data-count="234">0</div><span>Partidos con Portugal (récord)</span></article>
+        <article class="stat"><div class="n" data-count="5">0</div><span>Balones de Oro</span></article>
+        <article class="stat"><div class="n" data-count="140">0</div><span>Goles en Champions League (récord)</span></article>
+        <article class="stat"><div class="n" data-count="5">0</div><span>Champions League ganadas</span></article>
+        <article class="stat"><div class="n" data-count="450">0</div><span>Goles con el Real Madrid</span></article>
+        <article class="stat"><div class="n" data-count="41">0</div><span>Años en 2026</span></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="fotos" style="background:#101816">
+    <div class="wrap">
+      <h2 class="sec-title">Fotos</h2>
+      <p class="sec-sub">Portugal y Al-Nassr, tres momentos de CR7.</p>
+      <div class="gallery">
+        <figure class="shot">
+          <img src="images/Cristiano1.jpg" alt="Cristiano Ronaldo con la camiseta roja de Portugal" />
+          <figcaption><strong>Selección de Portugal</strong>Camiseta titular, dorsal 7.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="images/Cristiano2.jpg" alt="Cristiano Ronaldo corriendo con la camiseta blanca de Portugal" />
+          <figcaption><strong>En el campo</strong>Con el brazalete de capitán.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="images/Cristiano3.jpg" alt="Cristiano Ronaldo con la camiseta de Al-Nassr" />
+          <figcaption><strong>Al-Nassr</strong>Etapa actual en Arabia Saudí.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="clubes">
+    <div class="wrap">
+      <h2 class="sec-title">Clubes</h2>
+      <p class="sec-sub">Toca una tarjeta para ver el detalle de cada etapa.</p>
+      <div class="clubs" id="clubGrid"></div>
+      <div class="club-detail" id="clubDetail">Elige un club para conocer esa etapa.</div>
+    </div>
+  </section>
+
+  <section id="carrera">
+    <div class="wrap">
+      <h2 class="sec-title">Línea de carrera</h2>
+      <p class="sec-sub">De Madeira al mundo.</p>
+      <div class="timeline">
+        <div class="t-item"><strong>1985</strong> — Nace en Funchal, isla de Madeira.</div>
+        <div class="t-item"><strong>1997–2002</strong> — Academia del Sporting CP. Debut profesional en 2002.</div>
+        <div class="t-item"><strong>2003</strong> — Ficha por el Manchester United. Debut con Portugal.</div>
+        <div class="t-item"><strong>2008</strong> — Primera Champions y primer Balón de Oro.</div>
+        <div class="t-item"><strong>2009–2018</strong> — Real Madrid: 450 goles, 4 Champions y 4 Balones de Oro más.</div>
+        <div class="t-item"><strong>2016</strong> — Campeón de Europa con Portugal en la Eurocopa.</div>
+        <div class="t-item"><strong>2018–2021</strong> — Juventus: títulos de Serie A y 101 goles.</div>
+        <div class="t-item"><strong>2021–2022</strong> — Regreso al Manchester United.</div>
+        <div class="t-item"><strong>2023–hoy</strong> — Capitán del Al-Nassr. Sigue sumando goles camino de los 1.000.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="quiz" style="background:#101816">
+    <div class="wrap">
+      <h2 class="sec-title">Quiz CR7</h2>
+      <p class="sec-sub">5 preguntas. ¿Cuánto sabes de la leyenda?</p>
+      <div class="quiz-box">
+        <div class="progress-bar"><i id="bar"></i></div>
+        <div class="q" id="question"></div>
+        <div class="opts" id="options"></div>
+        <div class="quiz-nav">
+          <span id="qInfo" style="color:var(--muted)"></span>
+          <button class="btn btn-gold" id="nextBtn" onclick="nextQ()" style="display:none">Siguiente</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="records">
+    <div class="wrap">
+      <h2 class="sec-title">Récords</h2>
+      <p class="sec-sub">Algunas marcas que definen su carrera.</p>
+      <div class="records">
+        <div class="rec"><strong>Máximo goleador internacional masculino</strong><br><span style="color:var(--muted)">146 goles con Portugal.</span></div>
+        <div class="rec"><strong>Más partidos con una selección</strong><br><span style="color:var(--muted)">234 apariciones.</span></div>
+        <div class="rec"><strong>Máximo goleador de la Champions</strong><br><span style="color:var(--muted)">140 goles en la máxima competición europea.</span></div>
+        <div class="rec"><strong>Goles en 6 Mundiales distintos</strong><br><span style="color:var(--muted)">Único jugador masculino en lograrlo.</span></div>
+        <div class="rec"><strong>5 Balones de Oro</strong><br><span style="color:var(--muted)">2008, 2013, 2014, 2016 y 2017.</span></div>
+        <div class="rec"><strong>Títulos de liga en 4 países</strong><br><span style="color:var(--muted)">Inglaterra, España, Italia y Arabia Saudí.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      Página fan hecha con HTML, CSS y JavaScript. Datos orientativos a septiembre de 2026.
+      Cristiano Ronaldo y CR7 son marcas asociadas al jugador.
+    </div>
+  </footer>
+
+  <div id="siuu"><h2>SIUUU!</h2></div>
+
+  <script>
+    const clubs = [
+      { name: "Sporting CP", years: "2002–2003", goals: "5 goles", text: "Donde todo empezó. Debutó con el primer equipo en 2002 y deslumbró en Lisboa antes de dar el salto a Inglaterra." },
+      { name: "Manchester United", years: "2003–2009 y 2021–2022", goals: "145 goles", text: "Alex Ferguson lo convirtió en estrella mundial. Premier League, Champions 2008 y su primer Balón de Oro. Volvió en 2021." },
+      { name: "Real Madrid", years: "2009–2018", goals: "450 goles", text: "Su etapa más goleadora. Máximo artillero de la historia del club, 4 Champions (incluida La Décima) y 4 Balones de Oro." },
+      { name: "Juventus", years: "2018–2021", goals: "101 goles", text: "Ganó la Serie A y se convirtió en el primer jugador en ser campeón de liga en Inglaterra, España e Italia." },
+      { name: "Al-Nassr", years: "2023–presente", goals: "132+ goles", text: "Capitán en Arabia Saudí. Sigue batiendo marcas y persigue el histórico gol número 1.000 de su carrera." }
+    ];
+
+    const grid = document.getElementById("clubGrid");
+    const detail = document.getElementById("clubDetail");
+    clubs.forEach((c, i) => {
+      const el = document.createElement("article");
+      el.className = "club";
+      el.innerHTML = `<h3>${c.name}</h3><p>${c.years}</p><div class="g">${c.goals}</div>`;
+      el.onclick = () => {
+        document.querySelectorAll(".club").forEach(x => x.classList.remove("active"));
+        el.classList.add("active");
+        detail.innerHTML = `<strong style="color:var(--gold-2)">${c.name}</strong> · ${c.years}<p style="margin-top:8px">${c.text}</p>`;
+      };
+      grid.appendChild(el);
+      if (i === 2) el.click();
+    });
+
+    const nums = document.querySelectorAll("[data-count]");
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const el = e.target;
+        const end = +el.dataset.count;
+        const start = performance.now();
+        const dur = 1100;
+        const tick = (now) => {
+          const p = Math.min(1, (now - start) / dur);
+          el.textContent = Math.floor(end * (1 - Math.pow(1 - p, 3)));
+          if (p < 1) requestAnimationFrame(tick);
+          else el.textContent = end;
+        };
+        requestAnimationFrame(tick);
+        io.unobserve(el);
+      });
+    }, { threshold: 0.4 });
+    nums.forEach(n => io.observe(n));
+
+    const questions = [
+      { q: "¿En qué ciudad nació Cristiano Ronaldo?", a: ["Lisboa", "Oporto", "Funchal", "Madrid"], ok: 2 },
+      { q: "¿Cuántos Balones de Oro ha ganado?", a: ["3", "4", "5", "6"], ok: 2 },
+      { q: "¿Con qué selección es el máximo goleador mundial?", a: ["Brasil", "Portugal", "Argentina", "España"], ok: 1 },
+      { q: "¿Cuál fue su club más goleador?", a: ["Juventus", "Manchester United", "Al-Nassr", "Real Madrid"], ok: 3 },
+      { q: "¿En qué año ganó Portugal la Eurocopa con Ronaldo?", a: ["2012", "2016", "2020", "2004"], ok: 1 }
+    ];
+    let qi = 0, score = 0, locked = false;
+
+    function renderQ() {
+      locked = false;
+      const item = questions[qi];
+      document.getElementById("question").textContent = item.q;
+      document.getElementById("qInfo").textContent = `Pregunta ${qi + 1} de ${questions.length}`;
+      document.getElementById("bar").style.width = ((qi) / questions.length * 100) + "%";
+      document.getElementById("nextBtn").style.display = "none";
+      const box = document.getElementById("options");
+      box.innerHTML = "";
+      item.a.forEach((opt, idx) => {
+        const b = document.createElement("button");
+        b.className = "opt";
+        b.textContent = opt;
+        b.onclick = () => pick(idx, b);
+        box.appendChild(b);
+      });
+    }
+
+    function pick(idx, btn) {
+      if (locked) return;
+      locked = true;
+      const item = questions[qi];
+      const buttons = [...document.querySelectorAll(".opt")];
+      buttons[item.ok].classList.add("correct");
+      if (idx === item.ok) { score++; }
+      else { btn.classList.add("wrong"); }
+      document.getElementById("nextBtn").style.display = "inline-flex";
+      document.getElementById("nextBtn").textContent = qi === questions.length - 1 ? "Ver resultado" : "Siguiente";
+    }
+
+    function nextQ() {
+      if (qi < questions.length - 1) {
+        qi++;
+        renderQ();
+      } else {
+        document.getElementById("bar").style.width = "100%";
+        document.getElementById("question").textContent = `Has acertado ${score} de ${questions.length}`;
+        document.getElementById("options").innerHTML = score >= 4
+          ? "<p>Nivel leyenda. SIUUU.</p>"
+          : score >= 2
+          ? "<p>Buen conocimiento. Sigue repasando la carrera de CR7.</p>"
+          : "<p>Hora de volver a leer la línea de carrera.</p>";
+        document.getElementById("nextBtn").textContent = "Repetir quiz";
+        document.getElementById("nextBtn").onclick = () => { qi = 0; score = 0; document.getElementById("nextBtn").onclick = nextQ; renderQ(); };
+      }
+    }
+    renderQ();
+
+    function siuu() {
+      const el = document.getElementById("siuu");
+      el.classList.add("show");
+      setTimeout(() => el.classList.remove("show"), 900);
+    }
+
+    function toggleMenu() {
+      document.getElementById("links").classList.toggle("open");
+    }
+    document.querySelectorAll("#links a").forEach(a => {
+      a.addEventListener("click", () => document.getElementById("links").classList.remove("open"));
+    });
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 800) document.getElementById("links").classList.remove("open");
+    });
+  </script>
+</body>
+</html>
